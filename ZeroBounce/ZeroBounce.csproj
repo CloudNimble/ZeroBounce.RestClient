@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Description>Package Description for dotnetcore</Description>
+    <PackageId>zerobounce-dotnetcore</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Brandon Krauska</Authors>
+    <Company />
+    <Product>zerobounce-dotnetcore</Product>
+    <PackageProjectUrl>https://github.com/bkrauska/zerobounce-dotnetcore-api</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+  </ItemGroup>
+
+</Project>
