@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
-    <Description>Package Description for dotnetcore</Description>
+    <Description>ZeroBounce API Wrapper for dotnetcore</Description>
     <PackageId>zerobounce-dotnetcore</PackageId>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Brandon Krauska</Authors>
