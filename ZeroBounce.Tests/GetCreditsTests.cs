@@ -5,7 +5,7 @@ namespace ZeroBounce.Tests {
     [TestClass]
     public class GetCreditsTests : BaseTest {
         [TestMethod]
-        public void zerobounce_tests_getcredits_sandbox_happypath() {
+        public void zerobounce_tests_getcredits_happypath() {
             var zeroBounce = GetZeroBounceApi();
             var result = zeroBounce.GetCredits();
             if (result.ErrorMessage != null) Console.WriteLine("ErrorMessage: " + result.ErrorMessage);
@@ -14,7 +14,7 @@ namespace ZeroBounce.Tests {
         }
 
         [TestMethod]
-        public void zerobounce_tests_getcredits_sandbox_invalid_api_key() {
+        public void zerobounce_tests_getcredits_invalid_api_key() {
             var zeroBounce = GetZeroBounceApi("bad_api_key");
             var result = zeroBounce.GetCredits();
             if (result.ErrorMessage != null) Console.WriteLine("ErrorMessage: " + result.ErrorMessage);
