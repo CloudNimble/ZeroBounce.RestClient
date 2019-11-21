@@ -1,14 +1,20 @@
+trigger:
+  branches:
+    include:
+      - master
+  paths:
+    include:
+    - src/*
+
 pool:
   name: Azure Pipelines
-  vmImage: 'ws2019'
-#Your build pipeline references a secret variable named ‘ZeroBounceApiKey’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references a secret variable named ‘ZeroBounceApiKey’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references an undefined variable named ‘Parameters.RestoreBuildProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
-#Your build pipeline references an undefined variable named ‘Parameters.TestProjects’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+  vmImage: 'windows-latest'
+
+variables:
+  RestoreBuildProjects: '**/*.csproj'
+  TestProjects: '**/*[Tt]ests/*.csproj'
+  BuildPlatform: 'Any CPU'
+  BuildConfiguration: 'Release'
 
 steps:
 - task: UseDotNet@2
@@ -23,7 +29,7 @@ steps:
   displayName: 'Set User Secrets'
   inputs:
     command: custom
-    projects: '$(Parameters.RestoreBuildProjects)'
+    projects: '$(RestoreBuildProjects)'
     custom: 'user-secrets set ZeroBounceApiKey $(ZeroBounceApiKey)'
   enabled: false
 
@@ -31,19 +37,19 @@ steps:
   displayName: Restore
   inputs:
     command: restore
-    projects: '$(Parameters.RestoreBuildProjects)'
+    projects: '$(RestoreBuildProjects)'
 
 - task: DotNetCoreCLI@2
   displayName: Build
   inputs:
-    projects: '$(Parameters.RestoreBuildProjects)'
+    projects: '$(RestoreBuildProjects)'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
   displayName: Test
   inputs:
     command: test
-    projects: '$(Parameters.TestProjects)'
+    projects: '$(TestProjects)'
     arguments: '--configuration $(BuildConfiguration)'
 
 - task: DotNetCoreCLI@2
