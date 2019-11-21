@@ -62,7 +62,7 @@ namespace ZeroBounce
             var request = new RestRequest(regularApi + "validate", HttpMethod.Get);
             request.AddQueryString("api_key", ApiKey);
             request.AddQueryString("email", email);
-            request.AddQueryString("ip_address", ipAddress);
+            request.AddQueryString("ip_address", ipAddress ?? string.Empty);
 
             return await SendAsync<ValidationResponse>(request).ConfigureAwait(false);
         }
