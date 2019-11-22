@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="[10.0.1, 13.0.0)" />
+    <PackageReference Include="Newtonsoft.Json" Version="[10.0.3, 13.0.0)" />
     <PackageReference Include="PortableRest" Version="4.0.1-CI-20191119-191939" />
   </ItemGroup>
 
